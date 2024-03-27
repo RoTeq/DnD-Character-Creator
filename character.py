@@ -18,6 +18,8 @@ class Character:
         self.Current_Health = 0
         self.Armor_Class = 0
         self.Total_Level = 0
+        self.Size = ''
+
         self.Barbarian_Level = 0
         self.Bard_Level = 0
         self.Cleric_Level = 0
@@ -49,6 +51,7 @@ class Character:
         self.Current_Health = data['Current_Health']
         self.Armor_Class = data['Armor_Class']
         self.Total_Level = data['Total_Level']
+        self.Size = data['Size']
         self.Barbarian_Level = data['Barbarian_Level']
         self.Bard_Level = data['Bard_Level']
         self.Cleric_Level = data['Cleric_Level']
@@ -80,6 +83,7 @@ class Character:
             data['Health'] = self.Health
             data['Current_Health'] = self.Current_Health
             data['Armor_Class'] = self.Armor_Class
+            data['Size'] = self.Size
         except:
             pass
         data['Total_Level'] = self.Total_Level
@@ -150,16 +154,38 @@ class Character:
                     break
 
     def Build(self):
-        data = api.request(f"races/{self.Race.lower()}")
+        data = api.request_locale(self.Race.lower())
         self.Walking_Speed = data['speed']
-        print(data['ability_bonuses'])
-        print(data['age'])
-        print(data['alignment'])
-        print(data['size'])
-        print(data['starting_proficiencies'])
-        print(data['languages'])
-        print(data['traits'])
-        print(data['subraces'])
+        for bonus in data['ability_bonuses']:
+            bonus_cat =bonus['ability_score']['index']
+            match bonus_cat:
+                case 'str':
+                    self.Scores[0]+= bonus['bonus']
+            match bonus_cat:
+                case 'dex':
+                    self.Scores[1]+= bonus['bonus']
+            match bonus_cat:
+                case 'con':
+                    self.Scores[2]+= bonus['bonus']
+            match bonus_cat:
+                case 'int':
+                    self.Scores[3]+= bonus['bonus']
+            match bonus_cat:
+                case 'wis':
+                    self.Scores[4]+= bonus['bonus']
+            match bonus_cat:
+                case 'cha':
+                    self.Scores[5]+= bonus['bonus']
+        self.Size = (data['size'])
+        for proficency in data['starting_proficiencies']:
+            p = proficency['name']
+            print(p)
+        for language in data['languages']:
+            print(language['name'])
+        for trait in data['traits']:
+            print(trait['name'])
+        for subrace in data['subraces']:
+            print(subrace['name'])
 
 
     def randomize_scores(self) -> list[int]:
