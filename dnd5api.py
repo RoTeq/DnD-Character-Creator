@@ -4,6 +4,7 @@ class DnD5eAPI():
     def __init__(self) -> None:
         self.site = "https://www.dnd5eapi.co/api/"
         self.headers = {'Accept': 'application/json'}
+        self.urlcall = "https://www.dnd5eapi.co"
 
         self.locales = {
             'ability scores' : 'ability-scores',
@@ -56,7 +57,11 @@ class DnD5eAPI():
             'human' : 'human',
             'tiefling' : 'tiefling'
         }
-        
+    
+    def url_call(self,url:str):
+        link = self.urlcall+url
+        response = requests.get(link,headers=self.headers)
+        return response.json()
 
     def request(self,location:str = ''):
         url = self.site+location

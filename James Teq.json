@@ -1,1 +1,38 @@
-{"Name": "James Teq", "Scores": [8, 10, 13, 11, 16, 14], "Saving_Throws": [0, 0, 0, 0, 0, 0], "Proficeny_bonus": 0, "Walking Speed": 0, "Health": 0, "Current_Health": 0, "Armor_Class": 0, "Total_Level": 0, "Barbarian_Level": 0, "Bard_Level": 0, "Cleric_Level": 0, "Druid_Level": 0, "Fighter_Level": 0, "Monk_Level": 0, "Paladin_Level": 0, "Ranger_Level": 0, "Rouge_Level": 1, "Sorcerer_Level": 0, "Warlock_Level": 0, "Wizard_Level": 0, "Race": "Elf"}
+{
+  "Name": "James Teq",
+  "Scores": [
+    8,
+    10,
+    13,
+    11,
+    16,
+    14
+  ],
+  "Saving_Throws": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "Proficeny_bonus": 0,
+  "Walking Speed": 0,
+  "Health": 0,
+  "Current_Health": 0,
+  "Armor_Class": 0,
+  "Total_Level": 0,
+  "Barbarian_Level": 0,
+  "Bard_Level": 0,
+  "Cleric_Level": 0,
+  "Druid_Level": 0,
+  "Fighter_Level": 0,
+  "Monk_Level": 0,
+  "Paladin_Level": 0,
+  "Ranger_Level": 0,
+  "Rouge_Level": 1,
+  "Sorcerer_Level": 0,
+  "Warlock_Level": 0,
+  "Wizard_Level": 0,
+  "Race": "Elf"
+}

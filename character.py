@@ -8,10 +8,13 @@ class Character:
     def __init__(self) -> None:
         self.initialized = True
         self.data_entered = False
+        self.built = False
         self.Name = "N/A"
         self.Scores = [0,0,0,0,0,0]
         self.Saving_Throws = [0,0,0,0,0,0]
-        self.Proficencies = []
+        self.Proficencies = {}
+        self.Languages = []
+        self.Traits = {}
         self.Proficeny_Bonus = 0
         self.Walking_Speed = 0
         self.Health = 0
@@ -19,19 +22,20 @@ class Character:
         self.Armor_Class = 0
         self.Total_Level = 0
         self.Size = ''
-
-        self.Barbarian_Level = 0
-        self.Bard_Level = 0
-        self.Cleric_Level = 0
-        self.Druid_Level = 0
-        self.Fighter_Level = 0
-        self.Monk_level = 0
-        self.Paladin_Level = 0
-        self.Ranger_Level = 0
-        self.Rouge_Level = 0
-        self.Sorcerer_Level = 0
-        self.Warlock_Level = 0
-        self.Wizard_Level = 0
+        self.Classes = {
+            'Barbarian' : 0,
+            'Bard' : 0,
+            'Cleric' : 0,
+            'Druid' : 0,
+            'Fighter' : 0,
+            'Monk' : 0,
+            'Paladin' : 0,
+            'Ranger' : 0,
+            'Rogue' : 0,
+            'Sorcerer' : 0,
+            'Warlock' : 0,
+            'Wizard' : 0
+        }
 
     def parse(self,json):
         """
@@ -46,6 +50,7 @@ class Character:
         self.Saving_Throws = data['Saving_Throws']
         self.Proficeny_Bonus = data['Proficeny_bonus']
         self.Proficencies = data['Proficencies']
+        self.Languages = data['Languages']
         self.Walking_Speed = data['Walking Speed']
         self.Health = data['Health']
         self.Current_Health = data['Current_Health']
@@ -79,6 +84,7 @@ class Character:
             data['Saving_Throws'] = self.Saving_Throws
             data['Proficeny_bonus'] = self.Proficeny_Bonus
             data['Proficencies'] = self.Proficencies
+            data['Languages'] = self.Languages
             data['Walking Speed'] = self.Walking_Speed
             data['Health'] = self.Health
             data['Current_Health'] = self.Current_Health
@@ -107,33 +113,9 @@ class Character:
     def Make(self):
         self.Name = input("What is your name: ")
         self.Race = input("What race are you?: ")
-        self.Class = input("Which class are you? ")
-        match self.Class:
-            case 'Barbarian':
-                self.Barbarian_Level = 1
-            case 'Bard':
-                self.Bard_Level = 1
-            case 'Cleric':
-                self.Cleric_Level = 1
-            case 'Druid':
-                self.Druid_Level = 1
-            case 'Fighter':
-                self.Fighter_Level = 1
-            case 'Monk':
-                self.Monk_level = 1
-            case 'Paladin':
-                self.Paladin_Level = 1
-            case 'Ranger':
-                self.Ranger_Level = 1
-            case 'Rouge':
-                self.Rouge_Level = 1
-            case 'Sorcerer':
-                self.Sorcerer_Level = 1
-            case 'Warlock':
-                self.Warlock_Level = 1
-            case 'Wizard':
-                self.Wizard_Level = 1
-        print(f"You Are {self.Name} a {self.Race} {self.Class} at level 1")
+        Class = input("Which class are you? ")
+        self.Classes[Class] = 1
+        print(f"You Are {self.Name} a {self.Race} {Class} at level 1")
         self.Scores = []
         score_list = self.randomize_scores()
         Labels = ['Strength', 'Dexterity','Constitution','Inteligence','Wisdom','Charisma']
@@ -154,6 +136,18 @@ class Character:
                     break
 
     def Build(self):
+        self.Race_data()        
+
+
+
+    def randomize_scores(self) -> list[int]:
+        scores = []
+        for x in range(6):
+            y = dice.dice(number=4,sides=6,drop=('min',1))
+            scores.append(y)
+        return scores
+
+    def Race_data(self):
         data = api.request_locale(self.Race.lower())
         self.Walking_Speed = data['speed']
         for bonus in data['ability_bonuses']:
@@ -178,23 +172,11 @@ class Character:
                     self.Scores[5]+= bonus['bonus']
         self.Size = (data['size'])
         for proficency in data['starting_proficiencies']:
-            p = proficency['name']
-            print(p)
+            self.Proficencies[proficency['index']] = proficency['url']
         for language in data['languages']:
-            print(language['name'])
+            self.Languages.append(language['name'])
         for trait in data['traits']:
-            print(trait['name'])
-        for subrace in data['subraces']:
-            print(subrace['name'])
-
-
-    def randomize_scores(self) -> list[int]:
-        scores = []
-        for x in range(6):
-            y = dice.dice(number=4,sides=6,drop=('min',1))
-            scores.append(y)
-        return scores
-
-    def grab_race_data(self):
-        pass
-
+            self.Traits[trait['name']] = trait['url']
+    
+    def Class_data(self):
+        data = api.request_locale(self.Class.lower())
