@@ -32,4 +32,3 @@ def dice(number:int = 1,sides:int = 20,drop:tuple[str,int]=(None,None)) -> int:
                 num += roll
     return num
 
-print()

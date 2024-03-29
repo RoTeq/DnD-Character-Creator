@@ -6,22 +6,34 @@ api = dnd5api.DnD5eAPI()
 
 class Character:
     def __init__(self) -> None:
+
+        #Class Info
         self.initialized = True
         self.data_entered = False
         self.built = False
+
+        #Basic Character Info
         self.Name = "N/A"
         self.Scores = [0,0,0,0,0,0]
         self.Saving_Throws = [0,0,0,0,0,0]
         self.Proficencies = {}
+        self.Proficeny_Bonus = 0
+
+        #Character Traits
+        self.Race = ''
         self.Languages = []
         self.Traits = {}
-        self.Proficeny_Bonus = 0
         self.Walking_Speed = 0
+        self.Size = ''
+
+        #Character Health
+        self.Hit_Dice = 0
         self.Health = 0
         self.Current_Health = 0
         self.Armor_Class = 0
+
+        #Levels and Class
         self.Total_Level = 0
-        self.Size = ''
         self.Classes = {
             'Barbarian' : 0,
             'Bard' : 0,
@@ -37,7 +49,7 @@ class Character:
             'Wizard' : 0
         }
 
-    def parse(self,json):
+    def parse(self,json): #TODO Fix for dict values
         """
         Parses a JSON for the character data
         """
@@ -72,7 +84,7 @@ class Character:
         self.Race = data['Race']
         self.data_entered = True
     
-    def Dump(self):
+    def Dump(self): #TODO Fix for dict values
         if self.data_entered == False:
             print("[ERROR] Invalid")
         data = {}
@@ -135,10 +147,8 @@ class Character:
                     x = 0
                     break
 
-    def Build(self):
+    def Build(self): #TODO finish
         self.Race_data()        
-
-
 
     def randomize_scores(self) -> list[int]:
         scores = []
@@ -146,6 +156,13 @@ class Character:
             y = dice.dice(number=4,sides=6,drop=('min',1))
             scores.append(y)
         return scores
+    
+    def modifier_calculator(ability_score:int) -> int:
+        if ability_score <= 9:
+            modifier = int((ability_score-11)/2)
+        else:
+            modifier = int((ability_score-10)/2)
+        return modifier
 
     def Race_data(self):
         data = api.request_locale(self.Race.lower())
@@ -178,5 +195,39 @@ class Character:
         for trait in data['traits']:
             self.Traits[trait['name']] = trait['url']
     
-    def Class_data(self):
+    def Class_data(self):  
         data = api.request_locale(self.Class.lower())
+
+        self.Hit_Dice = data['hit_die']
+
+        proficiency_choices = data['proficiency_choices'][0]
+        print(proficiency_choices['desc'])
+        choices = proficiency_choices['from']['options']
+        itemlist = {}
+        for item in choices:
+            itemlist[item['item']['index'][6:]] = item['item']['index'][6:]
+        for prof in range(proficiency_choices['choose']):
+            while True:
+                choice = input(f"Choice {prof}: ")
+                if choice in itemlist:
+                    self.Proficencies[choice] = "type-skill"
+                    itemlist.pop(choice)
+                    break
+
+        for proficiency in data['proficiencies']:
+            if 'saving-throw-' in proficiency['index']:
+                pass
+            else:
+                self.Proficencies[proficiency] = "type-equipment"
+
+
+        for throw in data['saving_throws']:
+            print(throw['index'])
+        for item in data['starting_equipment']:
+            print(f"{item['equipment']['name']} | count: {item['quantity']}")
+        for option in data['starting_equipment_options']:
+            print(option['desc'])
+            for opt in option['from']['options']:
+                print(opt)
+        
+        print(data['class_levels'])

@@ -1,38 +1,288 @@
 {
+  "initialized": true,
+  "made": true,
+  "built": false,
   "Name": "James Teq",
-  "Scores": [
-    8,
-    10,
-    13,
-    11,
-    16,
-    14
+  "Race": "Elf",
+  "Inventory": {
+    "Leather Armor": {
+      "name": "Leather Armor",
+      "type": "armor",
+      "armor_class": 11,
+      "dex_bonus": true,
+      "str_minimum": 0,
+      "stealth_disadvantage": false,
+      "weight": 10,
+      "cost": [
+        10,
+        "gp"
+      ]
+    },
+    "Dagger": {
+      "name": "Dagger",
+      "type": [
+        "weapon",
+        "Simple",
+        "Melee"
+      ],
+      "cost": [
+        2,
+        "gp"
+      ],
+      "damage": {
+        "dice": [
+          "1",
+          "4"
+        ],
+        "type": "Piercing"
+      },
+      "range": {
+        "normal": 5
+      },
+      "weight": 1
+    },
+    "Thieves' Tools": {
+      "name": "Thieves' Tools",
+      "type": "tool",
+      "cost": [
+        25,
+        "gp"
+      ],
+      "desc": [
+        "This set of tools includes a small file, a set of lock picks, a small mirror mounted on a metal handle, a set of narrow-bladed scissors, and a pair of pliers. Proficiency with these tools lets you add your proficiency bonus to any ability checks you make to disarm traps or open locks."
+      ]
+    },
+    "Rapier": {
+      "name": "Rapier",
+      "type": [
+        "weapon",
+        "Martial",
+        "Melee"
+      ],
+      "cost": [
+        25,
+        "gp"
+      ],
+      "damage": {
+        "dice": [
+          "1",
+          "8"
+        ],
+        "type": "Piercing"
+      },
+      "range": {
+        "normal": 5
+      },
+      "weight": 2
+    },
+    "Shortbow": {
+      "name": "Shortbow",
+      "type": [
+        "weapon",
+        "Simple",
+        "Ranged"
+      ],
+      "cost": [
+        25,
+        "gp"
+      ],
+      "damage": {
+        "dice": [
+          "1",
+          "6"
+        ],
+        "type": "Piercing"
+      },
+      "range": {
+        "normal": 80,
+        "long": 320
+      },
+      "weight": 2
+    },
+    "Arrow": {
+      "name": "Arrow",
+      "type": "ammunition",
+      "cost": [
+        1,
+        "gp"
+      ]
+    },
+    "Backpack": {
+      "name": "Backpack",
+      "type": "standard-gear",
+      "cost": [
+        2,
+        "gp"
+      ]
+    },
+    "Ball bearings (bag of 1,000)": {
+      "name": "Ball bearings (bag of 1,000)",
+      "type": "standard-gear",
+      "cost": [
+        1,
+        "gp"
+      ]
+    },
+    "String (10 feet)": {
+      "name": "String (10 feet)",
+      "type": "standard-gear",
+      "cost": [
+        0,
+        "cp"
+      ]
+    },
+    "Bell": {
+      "name": "Bell",
+      "type": "standard-gear",
+      "cost": [
+        1,
+        "gp"
+      ]
+    },
+    "Candle": {
+      "name": "Candle",
+      "type": "standard-gear",
+      "cost": [
+        1,
+        "cp"
+      ]
+    },
+    "Crowbar": {
+      "name": "Crowbar",
+      "type": "standard-gear",
+      "cost": [
+        2,
+        "gp"
+      ]
+    },
+    "Hammer": {
+      "name": "Hammer",
+      "type": "standard-gear",
+      "cost": [
+        1,
+        "gp"
+      ]
+    },
+    "Piton": {
+      "name": "Piton",
+      "type": "standard-gear",
+      "cost": [
+        5,
+        "cp"
+      ]
+    },
+    "Lantern, hooded": {
+      "name": "Lantern, hooded",
+      "type": "standard-gear",
+      "cost": [
+        5,
+        "gp"
+      ]
+    },
+    "Oil (flask)": {
+      "name": "Oil (flask)",
+      "type": "standard-gear",
+      "cost": [
+        1,
+        "sp"
+      ]
+    },
+    "Rations (1 day)": {
+      "name": "Rations (1 day)",
+      "type": "standard-gear",
+      "cost": [
+        5,
+        "sp"
+      ]
+    },
+    "Tinderbox": {
+      "name": "Tinderbox",
+      "type": "standard-gear",
+      "cost": [
+        5,
+        "sp"
+      ]
+    },
+    "Waterskin": {
+      "name": "Waterskin",
+      "type": "standard-gear",
+      "cost": [
+        2,
+        "sp"
+      ]
+    },
+    "Rope, hempen (50 feet)": {
+      "name": "Rope, hempen (50 feet)",
+      "type": "standard-gear",
+      "cost": [
+        1,
+        "gp"
+      ]
+    }
+  },
+  "future_aditions": [],
+  "Scores": {
+    "str": 5,
+    "dex": 17,
+    "con": 7,
+    "int": 14,
+    "wis": 11,
+    "cha": 11
+  },
+  "Saving_Throws": {
+    "str": 0,
+    "dex": 1,
+    "con": 0,
+    "int": 1,
+    "wis": 0,
+    "cha": 0
+  },
+  "Proficencies": {
+    "perception": "type-skill",
+    "acrobatics": "type-skill",
+    "deception": "type-skill",
+    "persuasion": "type-skill",
+    "stealth": "type-skill",
+    "Light Armor": "type-equipment",
+    "Simple Weapons": "type-equipment",
+    "Longswords": "type-equipment",
+    "Rapiers": "type-equipment",
+    "Shortswords": "type-equipment",
+    "Hand crossbows": "type-equipment",
+    "Thieves' Tools": "type-equipment"
+  },
+  "Proficeny_Bonus": 0,
+  "Languages": [
+    "Common",
+    "Elvish"
   ],
-  "Saving_Throws": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-  ],
-  "Proficeny_bonus": 0,
-  "Walking Speed": 0,
+  "Traits": {
+    "Darkvision": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+    "Fey Ancestry": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep.",
+    "Trance": "Elves do not need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day. (The Common word for such meditation is \"trance.\") While meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After resting this way, you gain the same benefit that a human does from 8 hours of sleep.",
+    "Keen Senses": "You have proficiency in the Perception skill."
+  },
+  "Walking_Speed": 30,
+  "Size": "Medium",
+  "Hit_Dice": 8,
   "Health": 0,
   "Current_Health": 0,
   "Armor_Class": 0,
-  "Total_Level": 0,
-  "Barbarian_Level": 0,
-  "Bard_Level": 0,
-  "Cleric_Level": 0,
-  "Druid_Level": 0,
-  "Fighter_Level": 0,
-  "Monk_Level": 0,
-  "Paladin_Level": 0,
-  "Ranger_Level": 0,
-  "Rouge_Level": 1,
-  "Sorcerer_Level": 0,
-  "Warlock_Level": 0,
-  "Wizard_Level": 0,
-  "Race": "Elf"
+  "Total_Level": 1,
+  "Multiclassing": false,
+  "Starting_Class": "Rogue",
+  "Classes": {
+    "Barbarian": 0,
+    "Bard": 0,
+    "Cleric": 0,
+    "Druid": 0,
+    "Fighter": 0,
+    "Monk": 0,
+    "Paladin": 0,
+    "Ranger": 0,
+    "Rogue": 1,
+    "Sorcerer": 0,
+    "Warlock": 0,
+    "Wizard": 0
+  }
 }

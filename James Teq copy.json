@@ -1,0 +1,109 @@
+{
+  "initialized": true,
+  "made": true,
+  "built": false,
+  "Name": "James Teq",
+  "Race": "Elf",
+  "Inventory": {
+    "Leather Armor": {
+      "Name": "Leather Armor",
+      "count": 1,
+      "url": "/api/equipment/leather-armor"
+    },
+    "Dagger": {
+      "Name": "Dagger",
+      "count": 2,
+      "url": "/api/equipment/dagger"
+    },
+    "Thieves' Tools": {
+      "Name": "Thieves' Tools",
+      "count": 1,
+      "url": "/api/equipment/thieves-tools"
+    },
+    "Rapier": {
+      "Name": "Rapier",
+      "count": 1,
+      "url": "/api/equipment/rapier"
+    },
+    "Shortbow": {
+      "Name": "Shortbow",
+      "count": 1,
+      "url": "/api/equipment/shortbow"
+    },
+    "Arrow": {
+      "Name": "Arrow",
+      "count": 20,
+      "url": "/api/equipment/arrow"
+    },
+    "Burglar's Pack": {
+      "Name": "Burglar's Pack",
+      "count": 1,
+      "url": "/api/equipment/burglars-pack"
+    }
+  },
+  "future_aditions": [],
+  "Scores": {
+    "str": 5,
+    "dex": 17,
+    "con": 7,
+    "int": 14,
+    "wis": 11,
+    "cha": 11
+  },
+  "Saving_Throws": {
+    "str": 0,
+    "dex": 1,
+    "con": 0,
+    "int": 1,
+    "wis": 0,
+    "cha": 0
+  },
+  "Proficencies": {
+    "perception": "type-skill",
+    "acrobatics": "type-skill",
+    "deception": "type-skill",
+    "persuasion": "type-skill",
+    "stealth": "type-skill",
+    "Light Armor": "type-equipment",
+    "Simple Weapons": "type-equipment",
+    "Longswords": "type-equipment",
+    "Rapiers": "type-equipment",
+    "Shortswords": "type-equipment",
+    "Hand crossbows": "type-equipment",
+    "Thieves' Tools": "type-equipment"
+  },
+  "Proficeny_Bonus": 0,
+  "Languages": [
+    "Common",
+    "Elvish"
+  ],
+  "Traits": {
+    "Darkvision": "/api/traits/darkvision",
+    "Fey Ancestry": "/api/traits/fey-ancestry",
+    "Trance": "/api/traits/trance",
+    "Keen Senses": "/api/traits/keen-senses"
+  },
+  "Walking_Speed": 30,
+  "Size": "Medium",
+  "Hit_Dice": 8,
+  "Health": 0,
+  "Current_Health": 0,
+  "Armor_Class": 0,
+  "Total_Level": 1,
+  "Multiclassing": false,
+  "Starting_Class": "Rogue",
+  "Classes": {
+    "Barbarian": 0,
+    "Bard": 0,
+    "Cleric": 0,
+    "Druid": 0,
+    "Fighter": 0,
+    "Monk": 0,
+    "Paladin": 0,
+    "Ranger": 0,
+    "Rogue": 1,
+    "Sorcerer": 0,
+    "Warlock": 0,
+    "Wizard": 0
+  }
+}
