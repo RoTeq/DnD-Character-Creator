@@ -1,7 +1,22 @@
-from dnd5eutils import *
+#DnD Character Creator
+#    Copyright (C) 2024  Jacob Feldman
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+
+
+from Libs.dice import dice
+from Libs.dnd5api import DnD5eAPI
 import json
 
-api = dnd5api.DnD5eAPI()
+api = DnD5eAPI()
 
 class Character():
     def __init__(self) -> None:
@@ -80,10 +95,11 @@ class Character():
         }
         self.data['initialized'] = True
 
-    def dump(self):
+    def dump(self,folder:str = 'Characters'):
         dat = self.data
         js = json.dumps(dat)
-        f = open(f"{self.data['Name']}.json",'wt')
+        filename = f"{folder}\\{self.data['Name']}.json"
+        f = open(f"{filename}",'wt')
         f.write(js)
     
     def parse(self, Json_File):
@@ -267,23 +283,18 @@ class Character():
                             inven[gear['name']] = gear
         return inven
 
-
     def build(self):
         for trait in self.data['Traits']:
             dat = api.url_call(self.data['Traits'][trait])
             self.data['Traits'][trait] = dat['desc'][0]
-        self.data['Inventory'] = self.unpack_inventory(self.data['Inventory'])
-        
-                
+        self.data['Inventory'] = self.unpack_inventory(self.data['Inventory'])     
 
     def randomize_scores(self) -> list[int]:
         scores = []
         for x in range(6):
-            y = dice.dice(number=4,sides=6,drop=('min',1))
+            y = dice(number=4,sides=6,drop=('min',1))
             scores.append(y)
         return scores
-    
-
 
     def modifier_calculator(ability_score:int) -> int:
         if ability_score <= 9:

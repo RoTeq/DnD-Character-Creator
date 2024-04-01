@@ -1,6 +1,19 @@
-from dnd5api import DnD5eAPI
+#DnD Character Creator
+#    Copyright (C) 2024  Jacob Feldman
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
 
-api = DnD5eAPI()
+import libref
+
+api = libref.dnd5api.DnD5eAPI()
 
 def to_file(filename,data):
     f = open(filename,'wt')

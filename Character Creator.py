@@ -1,5 +1,18 @@
-import dnd5eutils
+#DnD Character Creator
+#    Copyright (C) 2024  Jacob Feldman
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+
 import Character_Class
+
 
 help = f"""
 help: This command
@@ -12,6 +25,17 @@ save: save the characters data to a json
 load: load a character from a json
 """
 
+warranty = f"""
+  THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY
+APPLICABLE LAW.  EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT
+HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY
+OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM
+IS WITH YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF
+ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+"""
+
 def show_char_data(char:Character_Class.Character):
     name = char.data['Name']
     race = char.data['Race']
@@ -22,15 +46,19 @@ def show_char_data(char:Character_Class.Character):
     str2 = f"│ level {level} {clas} │"
     longer = len(str1) - len(str2)
     if longer >= 0:
+        ref = f"│ {name} │ {race} │"
         str2 = f"│ level {level} {clas}{' '*(len(str1)-len(str2))} │"
+        str1 = f"│ {name} │ {race} |"
         block = f"├{'─'*(len(name)+2)}┴{'─'*(len(race)+2)}┤"
         top = f"┌{'─'*(len(name)+2)}┬{'─'*(len(race)+2)}┐"
-        bottom = f"└{'─'*(len(str1)-2)}┘"
+        bottom = f"└{'─'*(len(ref)-2)}┘"
     else:
-        str1 = f"│ {name} │ {race}{' '*(len(str2)-len(str1))} │"
-        block = f"├{'─'*(len(level)+2)}┴{'─'*(len(clas)+2)}┤"
-        top = f"┌{'─'*(len(name)+2)}┬{'─'*(len(race)+2)}┐"
-        bottom = f"└{'─'*(len(str2)-2)}┘"
+        ref = f"│ level {level} {clas} │"
+        str1 = f"│ {name}{' '*(len(str2)-len(str1))} │ {race} │"
+        str2 = f"│ level {level} {clas} │"
+        block = f"├{'─'*4}{'─'*(len(str(level))+2)}┴{'─'*(len(clas)+2)}┤"
+        top = f"┌{'─'*4}{'─'*(len(str(level))+2)}┬{'─'*(len(clas)+2)}┐"
+        bottom = f"└{'─'*(len(ref)-2)}┘"
     print(top)
     print(str1)
     print(block)
@@ -59,10 +87,12 @@ def show_full_char(char:Character_Class.Character):
         top = f"┌{'─'*(len(name)+2)}┬{'─'*(len(race)+2)}┬{'─────┬'*5}─────┐"
         bottom = f"└{'─'*(len(ref)-2)}┴{'─────┴'*5}─────┘"
     else:
-        str1 = f"│ {name} │ {race}{' '*(len(str2)-len(str1))} │"
-        block = f"├{'─'*(len(str(level))+2)}┴{'─'*(len(clas)+2)}┤"
-        top = f"┌{'─'*(len(name)+2)}┬{'─'*(len(race)+2)}┐"
-        bottom = f"└{'─'*(len(str2)-2)}┘"
+        ref = f"│ level {level} {clas} │"
+        str1 = f"│ {name}{' '*(len(str2)-len(str1))} │ {race} │ STR │ DEX │ CON │ INT │ WIS │ CHA │"
+        str2 = f"│ level {level} {clas} │ {scores['str']}{' '*(3-len(str(scores['str'])))} │ {scores['dex']}{' '*(3-len(str(scores['dex'])))} │ {scores['con']}{' '*(3-len(str(scores['con'])))} │ {scores['int']}{' '*(3-len(str(scores['int'])))} │ {scores['wis']}{' '*(3-len(str(scores['wis'])))} │ {scores['cha']}{' '*(3-len(str(scores['cha'])))} │"
+        block = f"├{'─'*4}{'─'*(len(str(level))+2)}┴{'─'*(len(clas)+2)}┼{'─────┼'*5}─────┤"
+        top = f"┌{'─'*4}{'─'*(len(str(level))+2)}┬{'─'*(len(clas)+2)}┬{'─────┬'*5}─────┐"
+        bottom = f"└{'─'*(len(ref)-2)}┴{'─────┴'*5}─────┘"
     print(top)
     print(str1)
     print(block)
@@ -96,18 +126,22 @@ def show_full_char(char:Character_Class.Character):
     print(bottom)
     
 
-
-
-
-
-
-
 def main():
+    print("""    
+DnD Character Creator Copyright (C) 2024  Jacob Feldman
+This program comes with ABSOLUTELY NO WARRANTY; for details type `warranty'.
+This is free software, and you are welcome to redistribute it
+under certain conditions; type `conditions' for details.
+    """)
     char = Character_Class.Character()
     running = True
     while running == True:
         cmd = input("What would you like to do: ")
         match cmd:
+            case 'conditions':
+                print("\nSee LICENSE doccument in repository for full list of conditions at \'https://github.com/RoTeq/DnD-software/blob/main/LICENSE\'\n")
+            case 'warranty':
+                print(warranty)
             case 'help':
                 print(help)
             case 'character':
@@ -123,9 +157,10 @@ def main():
             case 'save':
                 char.dump()
             case 'load':
+                folder = 'Characters'
                 c = input("what character: ")
-                char.parse(f'{c}.json')
-                show_char_data(char)
+                char.parse(f'{folder}\\{c}.json')
+                #show_char_data(char)
             case 'exit':
                 running = False
 

@@ -1,0 +1,53 @@
+{
+  "initialized": true,
+  "made": false,
+  "built": false,
+  "Name": "Test",
+  "Race": "None",
+  "Inventory": {},
+  "future_aditions": [],
+  "Scores": {
+    "str": 7,
+    "dex": 14,
+    "con": 13,
+    "int": 15,
+    "wis": 12,
+    "cha": 17
+  },
+  "Saving_Throws": {
+    "str": 0,
+    "dex": 0,
+    "con": 0,
+    "int": 0,
+    "wis": 0,
+    "cha": 0
+  },
+  "Proficencies": {},
+  "Proficeny_Bonus": 0,
+  "Languages": [],
+  "Traits": {},
+  "Walking_Speed": 0,
+  "Size": "",
+  "Hit_Dice": 0,
+  "Health": 0,
+  "Current_Health": 0,
+  "Armor_Class": 0,
+  "Total_Level": 1,
+  "Multiclassing": false,
+  "Starting_Class": "None",
+  "Classes": {
+    "Barbarian": 0,
+    "Bard": 0,
+    "Cleric": 0,
+    "Druid": 0,
+    "Fighter": 0,
+    "Monk": 0,
+    "Paladin": 0,
+    "Ranger": 0,
+    "Rogue": 0,
+    "Sorcerer": 0,
+    "Warlock": 0,
+    "Wizard": 0,
+    "None": 1
+  }
+}
