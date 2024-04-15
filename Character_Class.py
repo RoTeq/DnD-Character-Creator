@@ -38,6 +38,28 @@ class Character():
             'Name' : "N/A",
             'Race' : '',
 
+            #Character Personality
+            'Background' : '',
+            'Alignment' : '',
+            'Personality_Traits' : '',
+            'Ideals' : '',
+            'Bonds' : '',
+            'Flaws' : '',
+            'Backstory' : '',
+
+            'Faction' : '',
+            'Allies' : [],
+            'Organizations' : [],
+
+            #looks
+            'Age' : 0,
+            'Height' : '',
+            'Weigth' : 0,
+            'Eyes' : '',
+            'Skin' : '',
+            'Hair' : '',
+
+
             #Inventory
             'Inventory' : {},
             'future_aditions' : [],
@@ -69,9 +91,11 @@ class Character():
             'Size' : '',
     
             #Character Health
+
             'Hit_Dice' : 0,
             'Health' : 0,
             'Current_Health' : 0,
+            'Death_Saves' : (0,0), # [0] is Successes [1] is Failures
             'Armor_Class' : 0,
     
             #Levels and Class
@@ -148,6 +172,8 @@ class Character():
     def grab_class_data(self):
         data = api.request_locale(self.data['Starting_Class'].lower())
         self.data['Hit_Dice'] = data['hit_die']
+        self.data['Health'] = dice(1,self.data['Hit_Dice'])
+        self.data['Current_Health'] = self.data['Health']
         proficiency_choices = data['proficiency_choices'][0]
         print(proficiency_choices['desc'])
         choices = proficiency_choices['from']['options']
@@ -296,7 +322,7 @@ class Character():
             scores.append(y)
         return scores
 
-    def modifier_calculator(ability_score:int) -> int:
+    def modifier_calculator(self,ability_score:int) -> int:
         if ability_score <= 9:
             modifier = int((ability_score-11)/2)
         else:

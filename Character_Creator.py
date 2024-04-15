@@ -98,18 +98,19 @@ def show_full_char(char:Character_Class.Character):
     print(block)
     print(str2)
     print(bottom)
-#
-    #Indexes = f"│ HP Cur/Tot │ AC │"
-    #Data = f"│ {char.data['Current_Health']}/{char.data['Health']}{' '*(2-len())} │ {char.data['Armor_Class']}{2-len(str(char.data['Armor_Class']))} │ " 
-    #top = f"┌{'─'*(len(Data)-3)}┐"
-    #middle = f"├{'─'*(len(Data)-3)}┤"
-    #bottom = f"└{'─'*(len(Data)-3)}┘"
-#
-    #print(top)
-    #print(Indexes)
-    #print(middle)
-    #print(Data)
-    #print(bottom)
+
+    Indexes = f"│ HP Cur/Tot │ AC │"
+    hp = f"{char.data['Current_Health']}/{char.data['Health']}"
+    Data = f"│ {hp}{' '*((len(' HP Cur/Tot ')-len(hp))-2)} │ {char.data['Armor_Class']}{' '*(2-len(str(char.data['Armor_Class'])))} │ " 
+    top = f"┌{'─'*(len(Data)-3)}┐"
+    middle = f"├{'─'*(len(Data)-3)}┤"
+    bottom = f"└{'─'*(len(Data)-3)}┘"
+
+    print(top)
+    print(Indexes)
+    print(middle)
+    print(Data)
+    print(bottom)
 
     inv_width = 40
     inv_str = "│ Inventory │"
@@ -124,6 +125,8 @@ def show_full_char(char:Character_Class.Character):
         print(string)
     bottom = f"└{'─'*(inv_width - 2)}┘"
     print(bottom)
+
+    
     
 
 def main():
@@ -149,7 +152,10 @@ under certain conditions; type `conditions' for details.
             case 'full':
                 show_full_char(char)
             case 'create':
-                char.create()
+                if char.data['Total_Level'] >= 1:
+                    pass
+                else:
+                    char.create()
             case 'make':
                 char.make()
             case 'build':

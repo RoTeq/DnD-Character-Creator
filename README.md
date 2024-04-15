@@ -21,11 +21,37 @@ for all of these steps the program will guide you on how to make your character
 
 once you make your character you can save it by typing save and it will export it to the /Characters folder as a json with its name as the filename
 
+## Missing pieces of the character
+
+* Background
+* Alignment
+* ALL OF SPELLCASTING
+* Armor CLass
+* Most of the personality traits of a character
+
+## Known Bugs
+
+### PDF output issues
+* Race
+* Deception
+* History
+* Investigation
+* Perception
+* Stealth
+* Charisma mod 
+* Dexterity mod
+
 ## Future Plans
 
 * NPC creation capability
 * GUI Character Creator
-* Open to suggestions 
+* C++ implementation
+* Homebrew Support and Doccumentation
+* Bugfixes
+* Finish out Full character screen
+* Spellcasting Support
+* Export to Character Sheet
+* Open to suggestions
 
 ## Boring Stuff
 
@@ -44,4 +70,4 @@ This is meant to be used by anyone wanting to make characters easier or build pr
 
 ### Licensing
 
-This software is Licensed under the GNU GPL-V3 with the intention of making this software usable by anyone wishing to create characters for Dungeons and Dragons 5th Edition 
+This software is Licensed under the GNU GPL-V3 with the intention of making this software usable by anyone wishing to create characters for Dungeons and Dragons 5th Edition using content open to the public under the SRD

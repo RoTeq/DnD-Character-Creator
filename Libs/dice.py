@@ -44,4 +44,3 @@ def dice(number:int = 1,sides:int = 20,drop:tuple[str,int]=(None,None)) -> int:
             for roll in rolls:
                 num += roll
     return num
-
