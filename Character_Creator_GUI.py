@@ -35,7 +35,6 @@ Fonts:dict = {
     'Medium' : ('Arial',18),
     'Small' : ('Arial',12),
     'Tiny' : ('Arial',6),
-
 }
 
 def donothing():
