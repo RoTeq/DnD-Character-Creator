@@ -11,7 +11,9 @@
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU General Public License for more details.
 
-from typing import Any, Tuple
+from typing import Any, Literal, Tuple
+
+from customtkinter.windows.widgets.font import CTkFont
 import Character_Class
 from customtkinter import *
 
@@ -290,7 +292,14 @@ class Mainframe(CTkFrame):
         self.grid_columnconfigure(1,weight=3)
 
                 # Widgets Here
-        self.menuframe = Menuframe(self).grid(row=0,column=0,pady=10,padx=10,sticky = N)
+        self.menuframe = Menuframe(self).grid(row=0,column=0,pady=10,padx=10,sticky = W)
+
+        
+        self.grid_columnconfigure(1,weight=1)
+        self.grid_rowconfigure(0,weight=1)
+                # Widgets Here
+        creator = CTkButton(self,command=character_creator).grid(row=1)
+
 
 class App(CTk):
     def __init__(self, Name:str, Geometry:tuple[int, int], fg_color: str | Tuple[str, str] | None = None, **kwargs):
@@ -298,10 +307,11 @@ class App(CTk):
         self.geo = Geometry
         self.geometry(f"{Geometry[0]}x{Geometry[1]}")
         self.title(Name)
-        self.minsize(Geometry[0],Geometry[1])
-        self.maxsize(Geometry[0],Geometry[1])
         self.mainframe = Mainframe(master=self).grid()
-
+        self.grid_columnconfigure(0,weight=1)
+        self.grid_rowconfigure(0,weight=1)
+        self.mainframe = Mainframe(master=self)
+        self.mainframe.grid(row=0,column=0,sticky=NSEW)
 
 #Menu Switching
 def character_menu():
@@ -312,6 +322,31 @@ def help_menu():
     Menuframe.tabs = helpTabs(app.mainframe).grid(row=0,column=1,padx = 10,sticky = NW)
 def settings_menu():
     Menuframe.tabs = settingsTabs(app.mainframe).grid(row=0,column=1,padx = 10,sticky = NW)
+
+
+
+
+class character_creator(CTkToplevel):
+    def __init__(self, *args, fg_color: str | Tuple[str] | None = None, **kwargs):
+        super().__init__(*args, fg_color=fg_color, **kwargs)
+        self.geometry(f"800x500")
+        self.title("Create your Character")
+        self.minsize(width=600,height=220)
+        self.grid_columnconfigure(0,weight=1)
+        self.grid_rowconfigure(0,weight=1)
+        scroll(self).grid(column=0,row=0,sticky=NSEW)
+
+class scroll(CTkScrollableFrame):
+    def __init__(self, master: Any,**kwargs):
+        super().__init__(master,**kwargs)
+        CTkButton(self,text='Basics').pack()
+        CTkButton(self,text='Race').pack(pady=10)
+        CTkButton(self,text='Class').pack()
+        CTkButton(self,text='Scores').pack(pady=10)
+        CTkButton(self,text='Background').pack()
+        CTkButton(self,text='Spells').pack(pady=10)
+        CTkButton(self,text='Equipment').pack()        
+        CTkButton(self,text='Flavor').pack(pady=10)
 
 
 
